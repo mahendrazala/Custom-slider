@@ -8,31 +8,32 @@ const button = document.querySelectorAll(".button");
 let sliderNumber = 1;
 length = images.length;
 
-
-button[0].style.backgroundColor = 'white';
 const resetBg = () => {
-    button.forEach((button) => {
-      button.style.backgroundColor = "transparent";
-    });
-  };
-  
-  button.forEach((button, i) => {
-    button.addEventListener("click", () => {
-  
-      resetBg();
-      slider.style.transform = `translateX(-${i * 800}px)`;
-      sliderNumber = i ?  button.style.backgroundColor = "white" : resetBg();
-     
-    });
+  button.forEach((button) => {
+    button.style.backgroundColor = "transparent";
   });
-  
-  left.addEventListener("click", () => {
-    sliderNumber > 1 ? prevSlide() : lastSlide();
-    resetBg;
-    button[sliderNumber-1].style.backgroundColor = "white";
+};
 
+button.forEach((button, i) => {
+  button.addEventListener("click", () => {
+    resetBg();
+    slider.style.transform = `translateX(-${i * 800}px)`;
+  button.style.backgroundColor = "white";
 
   });
+});
+
+left.addEventListener("click", () => {
+  sliderNumber > 1 ? prevSlide() : lastSlide();
+  resetBg();
+  button[sliderNumber - 1].style.backgroundColor = "white";
+});
+
+right.addEventListener("click", () => {
+  sliderNumber < length ? nextSlide() : firstSlide();
+  resetBg();
+  button[sliderNumber - 1].style.backgroundColor = "white";
+});
 
 const nextSlide = () => {
   slider.style.transform = `translateX(-${sliderNumber * 800}px)`;
@@ -53,14 +54,6 @@ const lastSlide = () => {
   slider.style.transform = `translateX(-${(length - 1) * 800}px)`;
   sliderNumber = length;
 };
-
-right.addEventListener("click", () => {
-  sliderNumber < length ? nextSlide() : firstSlide();
-  resetBg();
-  button[sliderNumber-1].style.backgroundColor = "white";
-
-});
-
 
 // btn1.addEventListener('click',() => {
 //     slider.style.transform = `translateX(0px)`;
